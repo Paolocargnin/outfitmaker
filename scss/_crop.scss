@@ -1,0 +1,62 @@
+$dotColor: #0b9ec9;
+$dotStroke: #125164;
+$dotSize:20px;
+
+.crop-area{
+	position: relative;
+	img{
+		position: relative;
+		top:0;
+		z-index: 5;
+	}
+}
+
+.crop-maker{
+	position: absolute;
+	background:rgba(0,0,0,0.1);
+	z-index:10;
+}
+
+.crop-dot{
+	z-index:10;
+	position: absolute;
+	width:$dotSize*3;
+	height: $dotSize*3;
+	&:before,
+	&:after{
+		border-radius:50%;
+		content:"\00a0";
+		width:$dotSize;
+		height: $dotSize;
+		display: block;
+		position: absolute;
+		margin:auto;
+		left:-$dotSize/2;
+		top: -$dotSize/2;
+	}
+	&:after{
+		background:$dotColor;
+		z-index: 3;
+		box-shadow: 0 0 10px -3px darken($dotColor,10);
+	}
+	&:before{
+		background:$dotStroke;
+		z-index: 2;
+		animation: dotAnimation .5s forwards;
+	}
+}
+
+@keyframes dotAnimation {
+	0%{
+	}
+	60%{
+		opacity:1;
+	}
+	100%{
+		width:$dotSize*3;
+		left:-$dotSize*1.5;
+		top:-$dotSize*1.5;
+		height: $dotSize*3;
+		opacity: 0;
+	}
+}

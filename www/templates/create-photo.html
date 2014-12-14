@@ -1,0 +1,22 @@
+<ion-view title="Adjust picture">
+  <ion-content scroll="false">
+		<div class="item tabs tabs-secondary tabs-icon-left">
+		    <a class="tab-item"  ng-click="saveCanvas()">
+		      <i class="icon ion-thumbsup"></i>
+		      Save
+		    </a>
+		    <a class="tab-item" href="#">
+		      <i class="icon ion-share"></i>
+		      Share
+		    </a>
+		</div>
+		<div class="tooltip tooltip-fixed" ng-if="notTapped">
+			Tap the photo to cut your dress
+		</div>
+		<!-- ng-click="crop()" -->
+		<div class="clipParent crop-area">
+			<canvas id="cropMaker" class="crop-maker" on-touch="addTouchedCropPoint($event)"></canvas>
+			<img ng-src="{{lastPhoto}}" style="max-width: 100%" class="imageToAdd" ng-data-polyclip="{{cropCoords}}" ng-init="init()">
+		</div>
+	</ion-content>
+</ion-view>

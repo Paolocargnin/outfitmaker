@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.directives'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -73,6 +73,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         'tab-create': {
           templateUrl: 'templates/tab-create.html',
           controller: 'CreateCtrl'
+        }
+      }
+    })
+    .state('tab.create-photo', {
+      url: '/create/add/:action',
+      views: {
+        'tab-create': {
+          templateUrl: 'templates/create-photo.html',
+          controller: 'CreatePhotoCtrl'
         }
       }
     });

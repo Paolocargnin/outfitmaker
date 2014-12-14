@@ -1,0 +1,29 @@
+$tooltipBg: #333;
+$tooltipColor: #fff;
+.tooltip{
+	background:$tooltipBg;
+	color: $tooltipColor;
+	margin:auto;
+	width: 80%;
+	padding: 10px;
+	box-shadow: 0 0 20px -5px #000;
+}
+
+.tooltip-fixed{
+	position:fixed;
+	bottom:20%;
+	left: 0;
+	right: 0;
+	animation: tooltipAnimation .8s forwards;	
+}
+
+@keyframes tooltipAnimation{
+	0%{
+		transform:translateY(200px);
+		opacity: 0;
+	}
+	100%{
+		transform:translateY(0px);
+		opacity: 1;
+	}
+}
