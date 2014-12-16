@@ -14,8 +14,6 @@ angular.module('starter.controllers', [])
 .controller('CreateCtrl', function($scope,$location,Camera) {
 	$scope.getPhoto = function() {
 		Camera.getPicture({
-			targetWidth: 700,
-			targetHeight: 700,
 		}).then(function(imageURI) {
 			console.log(imageURI);
 			Camera.lastPhoto = imageURI;
@@ -45,7 +43,7 @@ angular.module('starter.controllers', [])
 		$scope.cropArea=document.querySelector('.crop-area');
 
 		$scope.cropMaker=document.getElementById('cropMaker');
-		$scope.lastPhoto=Camera.lastPhoto ? Camera.lastPhoto :'http://ideas.homelife.com.au/media/images/8/2/8/9/0/828947-1_ll.jpg';
+		$scope.lastPhoto=Camera.lastPhoto ? Camera.lastPhoto :'http://localhost/149H.jpg';
 
 		setTimeout(function(){
 			$scope.image={
@@ -62,7 +60,7 @@ angular.module('starter.controllers', [])
 			$scope.contextCropArea.lineWidth = 3;
 			$scope.contextCropArea.lineCap='round';
 			$scope.contextCropArea.lineJoin='round';
-		},2000);
+		},500);
 
 	};
 
@@ -147,28 +145,34 @@ angular.module('starter.controllers', [])
 	$scope.saveCanvas= function(){
 		$scope.crop();
 
-		var canvasEl=document.querySelector('.polyClip-clipped');
-		if (canvasEl){
-			navigator.notification.alert(
-				'Ho trovato l\'oggetto',
-				function(){},
-				"Complete",
-				"OK");
-		}
+		setTimeout(function(){
+			var canvasEl=document.querySelector('.polyClip-clipped');
 
-	   	window.canvas2ImagePlugin.saveImageDataToLibrary(
-			function(msg) {
-				navigator.notification.alert(
-					msg,
-					function(){},
-					"Complete",
-					"OK");
-			},
-			function(err){
-				$scope.imageToSave=err;
-				console.log(err);
-			},
-			document.querySelector('.polyClip-clipped')
-	    );
+
+
+		   	if (window.canvas2ImagePlugin){
+				canvasEl.setAttribute('width',$scope.naturalWidth);
+				canvasEl.setAttribute('height',$scope.naturalHeight);
+
+			   	window.canvas2ImagePlugin.saveImageDataToLibrary(
+					function(msg) {
+						$scope.savedImage=msg;
+						navigator.notification.alert(
+							msg,
+							function(){},
+							"Complete",
+							"OK");
+					},
+					function(err){
+						$scope.imageToSave=err;
+						console.log(err);
+					},
+					document.querySelector('.polyClip-clipped')
+			    );
+			}else{
+				$scope.savedImage=$scope.lastPhoto;
+				// do nothing
+			}
+		},500);
 	};
 });

@@ -25,7 +25,7 @@ angular.module('starter.services', [])
           q.reject(err);
         }, options);
       }else{
-        q.resolve('http://ideas.homelife.com.au/media/images/8/2/8/9/0/828947-1_ll.jpg');
+        q.resolve('http://localhost/149H.jpg');
       }
       return q.promise;
     }

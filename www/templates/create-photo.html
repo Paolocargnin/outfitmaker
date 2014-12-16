@@ -17,6 +17,7 @@
 		<div class="clipParent crop-area">
 			<canvas id="cropMaker" class="crop-maker" on-touch="addTouchedCropPoint($event)"></canvas>
 			<img ng-src="{{lastPhoto}}" style="max-width: 100%" class="imageToAdd" ng-data-polyclip="{{cropCoords}}" ng-init="init()">
+			<img ng-src="{{savedImage}}" style="max-width: 100%" ng-data-polyclip="{{cropCoords}}" ng-init="init()">
 		</div>
 	</ion-content>
 </ion-view>
