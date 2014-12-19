@@ -7317,6 +7317,9 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 .platform-c:not(.enable-transitions) * {
   transition: none !important; }
 
+.auto-width {
+  max-width: none !important; }
+
 .tooltip {
   background: #333;
   color: #fff;
@@ -7360,7 +7363,11 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   .crop-area img {
     position: relative;
     top: 0;
-    z-index: 5; }
+    z-index: 5;
+    max-width: 100%; }
+
+.clipParent canvas[data-polyclip] {
+  width: 100%; }
 
 .crop-maker {
   position: absolute;
@@ -7370,8 +7377,8 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 .crop-dot {
   z-index: 10;
   position: absolute;
-  width: 60px;
-  height: 60px; }
+  width: 0;
+  height: 0; }
   .crop-dot:before, .crop-dot:after {
     border-radius: 50%;
     content: "\00a0";

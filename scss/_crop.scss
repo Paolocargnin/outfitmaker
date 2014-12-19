@@ -8,6 +8,13 @@ $dotSize:20px;
 		position: relative;
 		top:0;
 		z-index: 5;
+		max-width: 100%;
+	}
+}
+
+.clipParent{
+	canvas[data-polyclip]{
+		width: 100%;
 	}
 }
 
@@ -20,8 +27,8 @@ $dotSize:20px;
 .crop-dot{
 	z-index:10;
 	position: absolute;
-	width:$dotSize*3;
-	height: $dotSize*3;
+	width:0 ;
+	height: 0 ;
 	&:before,
 	&:after{
 		border-radius:50%;

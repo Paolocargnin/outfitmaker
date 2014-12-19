@@ -124,7 +124,7 @@ angular.module('starter.controllers', [])
 		$scope.contextCropArea.stroke();
 	};
 
-	$scope.crop=function(){
+	$scope.cropCanvas=function(){
 		$scope.contextCropArea.closePath();
 
 		// need toproportional the pixel for the natural width height
@@ -138,41 +138,39 @@ angular.module('starter.controllers', [])
 			}
 			cropString=cropString+left+','+top;
 		});
-		$('.imageToAdd').attr('data-polyclip', cropString);
+		
+
+		$('.imageToAdd').addClass('auto-width').attr('data-polyclip', cropString);
+
+		polyClip.addCallback(function(){
+			//Load the third step
+			$scope.saveCanvas();
+		});
 		polyClip.init();
+		// $('.imageToAdd').removeClass('auto-width')
 	}
 
 	$scope.saveCanvas= function(){
-		$scope.crop();
+		var canvasEl=document.querySelector('.polyClip-clipped');
 
-		setTimeout(function(){
-			var canvasEl=document.querySelector('.polyClip-clipped');
+	   	if (window.canvas2ImagePlugin){
 
-
-
-		   	if (window.canvas2ImagePlugin){
-				canvasEl.setAttribute('width',$scope.naturalWidth);
-				canvasEl.setAttribute('height',$scope.naturalHeight);
-
-			   	window.canvas2ImagePlugin.saveImageDataToLibrary(
-					function(msg) {
-						$scope.savedImage=msg;
-						navigator.notification.alert(
-							msg,
-							function(){},
-							"Complete",
-							"OK");
-					},
-					function(err){
-						$scope.imageToSave=err;
-						console.log(err);
-					},
-					document.querySelector('.polyClip-clipped')
-			    );
-			}else{
-				$scope.savedImage=$scope.lastPhoto;
-				// do nothing
-			}
-		},500);
+		   	window.canvas2ImagePlugin.saveImageDataToLibrary(
+				function(msg) {
+					navigator.notification.alert(
+						msg,
+						function(){},
+						"Complete",
+						"OK");
+				},
+				function(err){
+					$scope.imageToSave=err;
+					console.log(err);
+				},
+				document.querySelector('.polyClip-clipped')
+		    );
+		}else{
+			// do nothing
+		}
 	};
 });
