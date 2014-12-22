@@ -4,6 +4,9 @@ $dotSize:20px;
 
 .crop-area{
 	position: relative;
+	height: 50%;
+	text-align: center;
+	background:url('../img/crop_bg.jpg');
 	img{
 		position: relative;
 		top:0;
@@ -14,7 +17,8 @@ $dotSize:20px;
 
 .clipParent{
 	canvas[data-polyclip]{
-		width: 100%;
+		max-width: 100%;
+		max-height: 100%;  
 	}
 }
 
@@ -52,6 +56,12 @@ $dotSize:20px;
 		animation: dotAnimation .5s forwards;
 	}
 }
+
+.crop-setting-area{
+	max-height:50%;
+	overflow: hidden;
+}
+
 
 @keyframes dotAnimation {
 	0%{

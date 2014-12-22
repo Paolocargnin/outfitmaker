@@ -1,14 +1,18 @@
 <ion-view title="Adjust picture">
   <ion-content scroll="false">
 		<div class="item tabs tabs-secondary tabs-icon-left">
-		    <a class="tab-item"  ng-click="cropCanvas()">
-		      <i class="icon ion-thumbsup"></i>
+		    <a class="tab-item"  on-tap="cropCanvas()" ng-if="! cropped">
+		      <i class="icon ion-crop"></i>
 		      Crop
 		    </a>
-		    <!-- <a class="tab-item" href="#">
+		    <a class="tab-item"  on-tap="saveCanvas()" ng-if="cropped">
+		      <i class="icon ion-upload"></i>
+		      Save
+		    </a>
+		    <a class="tab-item" on-tap="rotateCanvas(90)">
 		      <i class="icon ion-share"></i>
 		      Rotate
-		    </a> -->
+		    </a>
 		</div>
 		<div class="tooltip tooltip-fixed" ng-if="notTapped">
 			Tap the photo to cut your dress
@@ -19,12 +23,28 @@
 			<img ng-src="{{lastPhoto}}" class="imageToAdd" ng-data-polyclip="{{cropCoords}}" ng-init="init()">
 		</div>
 
-		<section class="imageSetting">
-			Name
-			Category
-			Tags
+		<section class="crop-setting-area">
+			<div class="list">
+				<label class="item item-input">
+					<span class="input-label">Name</span>
+					<input type="text" ng-model="dress.name">
+				</label>
+				<label class="item item-input item-select">
+					<div class="input-label">
+					Category
+					</div>
+					<select ng-model="dress.category">
+						<option>Hats</option>
+						<option selected>Medium</option>
+						<option>Down</option>
+						<option>Boots</option>
+						<option>Accessories</option>
+					</select>
+				</label>
+			</div>
+<!-- 			Tags
 			Color (next step)
-			...
+ -->			...
 		</section>
 
 	</ion-content>
