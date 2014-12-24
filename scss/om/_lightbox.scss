@@ -1,6 +1,11 @@
 .image-lightbox{
 	padding:20px;
 	background:rgba(0,0,0,.6);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	z-index: 90;
+	overflow: scroll;
 	img{
 		max-width: 100%;
 	}

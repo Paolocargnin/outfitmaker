@@ -7718,7 +7718,12 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 
 .image-lightbox {
   padding: 20px;
-  background: rgba(0, 0, 0, 0.6); }
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 90;
+  overflow: scroll; }
   .image-lightbox img {
     max-width: 100%; }
 
