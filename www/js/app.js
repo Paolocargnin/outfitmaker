@@ -67,21 +67,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    .state('tab.create', {
-      url: '/create',
+    .state('tab.dresses', {
+      url: '/dresses',
       views: {
-        'tab-create': {
-          templateUrl: 'templates/tab-create.html',
-          controller: 'CreateCtrl'
+        'tab-dresses': {
+          templateUrl: 'templates/tab-dresses.html',
+          controller: 'DressesCtrl'
         }
       }
     })
-    .state('tab.create-photo', {
-      url: '/create/add/:action',
+    .state('tab.create-dress', {
+      url: '/dress/add/:action',
       views: {
-        'tab-create': {
-          templateUrl: 'templates/create-photo.html',
-          controller: 'CreatePhotoCtrl'
+        'tab-dresses': {
+          templateUrl: 'templates/tab-dress-create.html',
+          controller: 'DressCreateCtrl'
         }
       }
     });

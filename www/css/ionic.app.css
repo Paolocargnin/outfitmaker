@@ -7749,7 +7749,6 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
     -webkit-transform: translateY(200px);
     transform: translateY(200px);
     opacity: 0; }
-
   100% {
     -webkit-transform: translateY(0px);
     transform: translateY(0px);
@@ -7768,7 +7767,6 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
 
 .crop-area {
   position: relative;
-  height: 50%;
   text-align: center;
   background: url('../img/crop_bg.jpg'); }
   .crop-area img {
@@ -7816,10 +7814,8 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   overflow: hidden; }
 
 @-webkit-keyframes dotAnimation {
-
   60% {
     opacity: 1; }
-
   100% {
     width: 60px;
     left: -30px;

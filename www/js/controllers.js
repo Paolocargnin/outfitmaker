@@ -11,9 +11,18 @@ angular.module('starter.controllers', [])
   $scope.friend = Friends.get($stateParams.friendId);
 })
 
-.controller('CreateCtrl', function($scope,$location,$timeout,$localstorage,Camera) {
+.controller('DressesCtrl', function($scope,$location,$timeout,$localstorage,Camera) {
 	$scope.init=function(){
 		$scope.dresses=$localstorage.getObject('dresses');
+
+		$scope.detailBox={
+			dress:{},
+			show: function(){
+				$timeout(function(dress){
+					$scope.detailBox.dress=dress;
+				},0);
+			}
+		}
 
 		$scope.imageBox={
 			imageUrl:'',
@@ -26,10 +35,9 @@ angular.module('starter.controllers', [])
 	$scope.getPhoto = function() {
 		Camera.getPicture({
 		}).then(function(imageURI) {
-			console.log(imageURI);
 			Camera.lastPhoto = imageURI;
 
-			$location.path('/tab/create/add/photo');	
+			$location.path('/tab/dress/add/photo');	
 		}, function(err) {
 			console.err(err);
 		}, {
@@ -38,8 +46,13 @@ angular.module('starter.controllers', [])
 			saveToPhotoAlbum: false
 		});
 	};
+
+	$scope.deleteDress = function(indexToRemove){
+		$scope.dresses.items.splice(indexToRemove,1);
+		$localstorage.setObject('dresses',$scope.dresses);
+	};
 })
-.controller('CreatePhotoCtrl', function($scope, $timeout, $localstorage, Camera) {
+.controller('DressCreateCtrl', function($scope, $timeout, $location, $localstorage, Camera) {
 	$scope.cropDots=[];
 	$scope.dress={
 		name:'',
@@ -74,7 +87,6 @@ angular.module('starter.controllers', [])
 			$scope.contextCropArea.lineCap='round';
 			$scope.contextCropArea.lineJoin='round';
 		},500);
-
 	};
 
 	$scope.startDotsAnimation= function(){
@@ -270,6 +282,8 @@ angular.module('starter.controllers', [])
 			$scope.dress.imageUrl=$scope.croppedImage.src;
 			$scope.storeDress();
 		}
+
+		$location.path('/tab/dresses');
 	};
 
 	$scope.storeDress = function(){
@@ -282,4 +296,7 @@ angular.module('starter.controllers', [])
 		dresses.items.push($scope.dress);
 		$localstorage.setObject('dresses',dresses);
 	};
+
+	$scope.init();
+
 });
